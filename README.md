@@ -16,19 +16,30 @@ something for everyone.
 - Backend: [Python(Django)]
 - Authentication: Secure user authentication with [OAuth].
 
+### Links
+Live Site URL: (Fashion E-Commerce Site)[https://effy1996.github.io/e-commerce/]
+
 ### Getting Started
 1. Clone the repository:
+   
    `git clone https://github.com/yourusername/fashionhub.git`
+   
    `cd fashionhub `
-2. Create a virtual environment (recommended)
+3. Create a virtual environment (recommended)
+   
    `python -m venv env`
+   
    `source env/bin/activate  # On Windows: env\Scripts\activate`
-3. Apply database migrations
+5. Apply database migrations
+   
    `python manage.py makemigrations`
+   
    `python manage.py migrate`
-4. Create a superuser (admin account)
+8. Create a superuser (admin account)
+   
    `python manage.py createsuperuser`
-5. Run the development server
+10. Run the development server
+    
    `python manage.py runserver`
    The app will be available at `http://127.0.0.1:8000/`.
 
