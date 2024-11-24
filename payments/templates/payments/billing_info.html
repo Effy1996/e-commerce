@@ -1,0 +1,87 @@
+{% include "fashion/navbar.html" %}
+
+{% block body %}
+<br>
+
+<div class="container" style="max-width: 600px;">
+   
+    <center>
+        <div class="card">
+            <div class="card-header">
+              Order Summary
+            </div>
+            <div class="card-body">
+                
+                {% for product in cart_products %}
+                <br><br>
+                    {{ product.name }}: 
+                    Ksh {{ product.price }}
+                    <br>
+                    Quantity: 
+                    {% for key, value in quantities.items %}
+                        {% if key == product.id|slugify %}
+                            {{ value }}
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+                <br>
+                <br>
+                <strong>Total: Ksh {{ totals }}</strong>
+                <br><br>
+                <a href="{% url 'cart' %}" class="btn btn-secondary">Update Items</a>
+                <br>
+                <br>
+            </div>
+            <br>
+            <br>
+        </div>
+        <br><br>
+    </center>
+    <center>
+        <div class="card">
+            <div class="card-header">
+                Shipping Info
+            </div>
+            <div class="card-body">
+                
+                Name: {{ shipping_info.shipping_full_name }}
+                <br>
+                Email: {{ shipping_info.shipping_email }}
+                <br>
+                Address 1:{{ shipping_info.shipping_address1 }}
+                <br>
+                County: {{ shipping_info.shipping_county }}
+                <br>
+                Town: {{ shipping_info.shipping_town }}
+                <br>
+                Zipcode: {{ shipping_info.shipping_zipcode }}
+                    <br><br>
+                    <a href="{% url 'checkout' %}" class="btn btn-secondary">Update Billing</a>    
+            </div>
+        </div>
+        <br><br><br>
+    </center>
+    <center>
+        <div class="card">
+            <div class="card-header">
+                Billing Info
+            </div>
+            <form action="{% url 'process_order' %}" method="POST">
+                <div class="card-body">
+                    {% csrf_token %}
+                    {{ billing_form.as_p }}
+                    
+                </div>
+                <br><br> 
+                    <a href="" class="btn btn-success">Pay Now</a>
+            </form>
+            
+        </div>
+        
+    </center>
+    
+   
+    <br><br><br>
+</div>
+{% endblock %}
+{% include "fashion/footer.html" %}

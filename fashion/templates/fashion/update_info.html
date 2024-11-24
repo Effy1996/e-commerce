@@ -1,0 +1,42 @@
+{% include "fashion/navbar.html" %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <center>
+            <div class="col-8">
+                
+                <br>
+                <br>
+                <strong>Billing Information</strong>
+                <br>
+                <br>
+                <form action="{% url 'update_info' %}" method="POST">
+                    {% csrf_token %}
+                    {{ info_form.as_p }}
+                    <br>
+                    <br>
+                    <strong>Shipping Information</strong>
+                    <br>
+                    <br>
+                    {{ shipping_form.as_p }}
+                    <button type="submit" class="btn btn-secondary">Update Info</button>
+                </form>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
+        </center>
+    </div>
+</div>
+
+{% endblock %}
+{% include "fashion/footer.html" %}

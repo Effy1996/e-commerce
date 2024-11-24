@@ -1,0 +1,60 @@
+{% include "fashion/navbar.html" %}
+
+{% block body %}
+<br>
+
+<div class="container">
+   
+    <center>
+        <div class="card">
+            <div class="card-header">
+              Order Summary
+            </div>
+            <div class="card-body">
+                
+                {% for product in cart_products %}
+                <br><br>
+                    {{ product.name }}: 
+                    Ksh {{ product.price }}
+                    <br>
+                    Quantity: 
+                    {% for key, value in quantities.items %}
+                        {% if key == product.id|slugify %}
+                            {{ value }}
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+                <br>
+                <br>
+                <strong>Total: Ksh {{ totals }}</strong>
+                <br><br>
+                <a href="{% url 'cart' %}" class="btn btn-secondary">Update Items</a>
+                <br>
+                <br>
+            </div>
+            <br>
+            <br>
+        </div>
+        <br><br>
+    </center>
+    <center>
+        <div class="card">
+            <div class="card-header">
+                Shipping Info
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{% url 'billing_info' %}">
+                    {% csrf_token %}
+                    {{ shipping_form.as_p }}
+                    <br><br>
+
+                    <button type="submit" class="btn btn-info">Continue To Billing</button>
+                </form>
+            </div>
+        </div>
+        
+        <br><br>
+    </center>
+</div>
+{% endblock %}
+{% include "fashion/footer.html" %}

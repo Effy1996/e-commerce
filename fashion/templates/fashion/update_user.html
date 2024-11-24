@@ -1,0 +1,37 @@
+{% include "fashion/navbar.html" %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <center>
+            <div class="col-8">
+                
+                <br>
+                <br>
+                <br>
+                <br>
+                <form action="{% url 'update_user' %}" method="POST">
+                    {% csrf_token %}
+                    {{ user_form.as_p }}
+                    <br>
+                    <button type="submit" class="btn btn-secondary">Update Profile</button>
+                </form>
+                <br>
+                <br>
+                <br>
+                <a href="{% url 'update_pw' %}" class="btn btn-primary">Update Password</a>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
+        </center>
+    </div>
+</div>
+
+{% endblock %}
+{% include "fashion/footer.html" %}

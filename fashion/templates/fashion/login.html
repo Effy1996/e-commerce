@@ -1,0 +1,40 @@
+{% include "fashion/navbar.html" %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <center>
+            <div class="col-8">
+                
+                <br>
+                <br>
+                <br>
+                <br>
+                <form action="{% url 'login' %}" method="POST">
+                    {% csrf_token %}
+                        <div class="mb-3">
+                          <input type="text" class="form-control" id="exampleInputEmail1" name="username" placeholder="Username">
+                        </div>
+                        <div class="mb-3">
+                          <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password">
+                        </div>
+                        <button type="submit" class="btn btn-secondary">Login</button>
+                </form>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
+        </center>
+    </div>
+</div>
+
+{% endblock %}
+{% include "fashion/footer.html" %}

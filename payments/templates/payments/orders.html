@@ -1,0 +1,49 @@
+{% include "fashion/navbar.html" %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <center>
+            <div class="col-8">
+                <div class="card text-center">
+                    <div class="card-header">
+                      Order No. {{ item.id }} - Ksh {{ item.amount_paid }}
+                    </div>
+                    <div class="card-body">
+                      Email: {{ item.email }}
+                      <br><br>
+                      {% if order.date_shipped %}
+                      Date Shipped: {{ item.date_shipped }}
+                      <br><br>
+                      {% else %}
+                      Date Ordered: {{ item.date_ordered }}
+                      <br><br>
+                      {% endif %}
+                      <br><br><br>
+                      {{ order.full_name }}
+                      <br><br>
+                      {{ order.shipping_address }}
+                      <br><br>
+                    </div>
+                    
+                </div>
+                {% if not order.shipped %}
+                {% csrf_token %}
+                <form method="POST">
+                    <input type="hidden" name="shipping_status" value="true">
+                    <button type="submit" class="btn btn-success">Mark As Shipped</button>
+                </form>
+                {% else %}
+                {% csrf_token %}
+                <form method="POST">
+                    <input type="hidden" name="shipping_status" value="false">
+                    <button type="submit" class="btn btn-danger">Mark As Not Shipped</button>
+                </form>
+                {% endif %}
+            </div>
+        </center>
+    </div>
+</div>
+
+{% endblock %}
+{% include "fashion/footer.html" %}
