@@ -56,8 +56,8 @@ def logout_user(request):
     return redirect("home")
 
 def register_user(request):
-    form = SignUpForm(request.POST)
     if request.method == "POST":
+        form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data['username']
@@ -67,9 +67,10 @@ def register_user(request):
             messages.success(request, ("You Have Successfully Registered!"))
             return redirect("home")
         else:
-            messages.success(request, ("Something Went Wrong! Please Try Again!"))
-            return redirect("home")
+            messages.error(request, form.errors)
+            return redirect("register")
     else:
+        form = SignUpForm(request.POST)
         return render(request, "fashion/register.html", {
             "form":form
         })
