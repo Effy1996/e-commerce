@@ -13,6 +13,7 @@ from cart.cart import Cart
 # Create your views here.
 def home(request):
     products = Product.objects.all()
+    print(products)
     return render(request, "fashion/home.html", {
         "products": products
     })
