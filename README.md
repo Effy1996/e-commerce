@@ -16,9 +16,6 @@ something for everyone.
 - Backend: [Python(Django)]
 - Authentication: Secure user authentication with [OAuth].
 
-### Links
-Live Site URL: (Fashion E-Commerce Site)[https://effy1996.github.io/e-commerce/]
-
 ### Getting Started
 1. Clone the repository:
    
