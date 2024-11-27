@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+
+#Load environmental variables
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,7 +31,7 @@ SECRET_KEY = 'django-insecure-7ilc^1t8&wvifxe3yv14jj5li$o@1-7c=jlbk%^qtzyvn62j69
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-#.vercel.app
+CSRF_TRUSTED_ORIGINS = []
 
 # Application definition
 
@@ -41,6 +45,7 @@ INSTALLED_APPS = [
     'fashion',
     'cart',
     'payments',
+    'whitenoise.runserver_nostatic',
 ]
 
 MIDDLEWARE = [
@@ -51,7 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'edx.urls'
@@ -81,9 +86,12 @@ WSGI_APPLICATION = 'edx.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join('/tmp', 'db.sqlite3'),
-        
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',
+        'USER': os.getenv('effy-akinyi'),
+        'PASSWORD': os.environ.get('PGDB_PASSWORD'),
+        'HOST': os.getenv('autorack.proxy.rlwy.net'),
+        'PORT': os.getenv('25556'),
     }
 }
 
@@ -122,12 +130,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 #STATIC_ROOT = BASE_DIR
-# White noise static stuff
+# White noise static 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = ['static/']
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),  
+]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = 'media/'
