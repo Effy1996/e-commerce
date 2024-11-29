@@ -83,13 +83,13 @@ WSGI_APPLICATION = 'edx.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
+PGDB_PASSWORD = os.environ['PGDB_PASSWORD']
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'railway',
         'USER': 'postgres',
-        'PASSWORD': os.environ['PGDB_PASSWORD'],
+        'PASSWORD': PGDB_PASSWORD,
         'HOST': 'autorack.proxy.rlwy.net',
         'PORT': '15681',
     }
