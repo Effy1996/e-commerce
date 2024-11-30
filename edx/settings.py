@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'edx.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-PGDB_PASSWORD = os.environ['PGDB_PASSWORD']
+PGDB_PASSWORD = os.environ.get('PGDB_PASSWORD')
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
