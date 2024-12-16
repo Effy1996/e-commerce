@@ -1,4 +1,4 @@
-#Fashion E-Commerce Web App
+# Fashion E-Commerce Web App
 ## Description
 This was my first ever Python Django Project. This a single-vendor e-commerce store for a fashion line that I named Stylish. Stylish is a modern and intuitive e-commerce
 platform designed to revolutionize the way you shop for fashion. Whether you're looking for the latest trends, timeless classics, or sustainable options, Stylish has 
